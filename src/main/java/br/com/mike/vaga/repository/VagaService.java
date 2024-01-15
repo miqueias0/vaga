@@ -33,7 +33,7 @@ public class VagaService {
             entity.setDescricao(vaga.getDescricao());
             entity.setRequisitos(vaga.getRequisitos());
             entity.setTitulo(vaga.getTitulo());
-            return iVaga.save(vaga);
+            return iVaga.save(entity);
         }else{
             throw new Exception("Erro ao alterar Vaga pelo seguinte motivo: Vaga não encontrada");
         }

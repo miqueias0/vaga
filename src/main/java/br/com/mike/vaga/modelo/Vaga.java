@@ -16,6 +16,9 @@ public class Vaga {
     @Column(name = "id", nullable = false, unique = true, updatable = false)
     private String id;
 
+    @Column(name = "contratante_id", nullable = false, updatable = false)
+    private String contratanteId;
+
     @Column(nullable = false)
     private String titulo;
 
@@ -58,5 +61,13 @@ public class Vaga {
 
     public void setRequisitos(List<String> requisitos) {
         this.requisitos = requisitos;
+    }
+
+    public String getContratanteId() {
+        return contratanteId;
+    }
+
+    public void setContratanteId(String contratanteId) {
+        this.contratanteId = contratanteId;
     }
 }
