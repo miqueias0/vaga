@@ -86,6 +86,13 @@ public class VagaController {
     public ResponseEntity<MensagemRetorno> excluir(@RequestHeader HttpHeaders sec, @RequestBody VagaRecord vagaRecord) throws Exception {
         try {
             AutenticacaoRecord seguranca = new AutenticationService(sec).validarToken();
+            CandidaturaService candidaturaService = new CandidaturaService(sec);
+            List<CandidaturaRecord> records = candidaturaService.obterListaPorVagaId(vagaRecord.id());
+            if(records != null){
+                for(CandidaturaRecord candidaturaRecord: records){
+                    candidaturaService.excluir(candidaturaRecord);
+                }
+            }
             vagaService.excluir(converterVagaRecord(vagaRecord));
             return ResponseEntity.ok().body(new MensagemRetorno("Sucesso"));
         } catch (Exception e) {
@@ -95,7 +102,7 @@ public class VagaController {
 
 
     private VagaRecord converterVaga(Vaga vaga) {
-        return new VagaRecord(vaga.getId(), vaga.getTitulo(), vaga.getDescricao(), vaga.getRequisitos());
+        return new VagaRecord(vaga.getId(), vaga.getTitulo(), vaga.getDescricao(), vaga.getRequisitos(), vaga.getContratanteId());
     }
 
     private Vaga converterVagaRecord(VagaRecord vagaRecord) {
