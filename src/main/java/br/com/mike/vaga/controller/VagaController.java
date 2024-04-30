@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/vaga")
+@RequestMapping(value = "/api/vaga")
 public class VagaController {
     @Autowired
     private VagaService vagaService;
